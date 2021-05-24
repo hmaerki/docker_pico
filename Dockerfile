@@ -28,9 +28,10 @@ RUN cd /pico/pico-examples && make
 
 COPY projects /pico/projects
 
-RUN cd /pico/projects/hello_usb && cmake . && make
-RUN cd /pico/projects/waveshare_lcd_a && cmake . && make
-RUN cd /pico/projects/waveshare_lcd_b && cmake . && make
+# RUN cd /pico/projects/hello_usb && cmake . && make
+# RUN cd /pico/projects/waveshare_lcd_a && cmake . && make
+# RUN cd /pico/projects/waveshare_lcd_b && cmake . && make
+RUN cd /pico/projects/waveshare_lcd_c && cmake . && make
 
 EXPOSE 443
 
