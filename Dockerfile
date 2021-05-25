@@ -14,7 +14,6 @@ RUN apt update && apt upgrade -y \
 RUN mkdir /pico
 WORKDIR /pico
 
-
 RUN cd /pico && git clone -b master --recurse-submodules https://github.com/raspberrypi/pico-sdk.git
 RUN cd /pico/pico-sdk && git submodule update --init
 RUN cd /pico/pico-sdk && git checkout 1.1.2
@@ -24,14 +23,15 @@ RUN cd /pico && git clone -b master https://github.com/raspberrypi/pico-examples
 ENV PICO_SDK_PATH="/pico/pico-sdk"
 
 RUN cd /pico/pico-examples && cmake .
-RUN cd /pico/pico-examples && make
+RUN cd /pico/pico-examples && make -j 8
 
 COPY projects /pico/projects
 
-# RUN cd /pico/projects/hello_usb && cmake . && make
-# RUN cd /pico/projects/waveshare_lcd_a && cmake . && make
-# RUN cd /pico/projects/waveshare_lcd_b && cmake . && make
-RUN cd /pico/projects/waveshare_lcd_c && cmake . && make
+RUN cd /pico/projects/hello_usb && cmake . && make -j 8
+RUN cd /pico/projects/waveshare_lcd_a && cmake . && make -j 8
+RUN cd /pico/projects/waveshare_lcd_b && cmake . && make -j 8
+RUN cd /pico/projects/waveshare_lcd_c && cmake . && make -j 8
+RUN cd /pico/projects/waveshare_lcd_d && cmake . && make -j 8
 
 EXPOSE 443
 
